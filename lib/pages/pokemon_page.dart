@@ -24,7 +24,7 @@ class _Pokemon_PageState extends State<Pokemon_Page> {
       List<Future<Pokemon>> futures = [];
 
       for (var pokemon in jsonData['results']) {
-        futures.add(fetchPokemonDetails(pokemon));
+        futures.add(fetchPokemonSemiDetailed(pokemon));
       }
 
       pokemons = await Future.wait(futures); // Esperar todas las solicitudes de imagen concurrentemente
@@ -35,7 +35,7 @@ class _Pokemon_PageState extends State<Pokemon_Page> {
     return pokemons;
   }
 
-  Future<Pokemon> fetchPokemonDetails(dynamic pokemon) async {
+  Future<Pokemon> fetchPokemonSemiDetailed(dynamic pokemon) async {
     String nombrePokemon = capitalizeFirstLetter(pokemon['name']);
     String referenciaPokemon = pokemon['url'];
     String pokemonImageUrl = await fetchPokemonImageUrl(referenciaPokemon);
@@ -55,6 +55,46 @@ class _Pokemon_PageState extends State<Pokemon_Page> {
 
     return urlImagenPokemon;
   }
+
+  Future<Pokemon> fetchPokemonDetails(Pokemon pokemon) async {
+    String nombrePokemon = pokemon.name.toLowerCase();
+    int hp;
+    int attack;
+    int defense;
+    int specialAttack;
+    int specialDefense;
+    int speed;
+    List<String> habilities = [];
+    List<String> types = [];
+
+    final response = await _dio.get('https://pokeapi.co/api/v2/pokemon/$nombrePokemon');
+    if(response.statusCode == 200) {
+      final jsonData = response.data;
+      hp = jsonData['stats'][0]['base_stat'];
+      attack = jsonData['stats'][1]['base_stat'];
+      defense = jsonData['stats'][2]['base_stat'];
+      specialAttack = jsonData['stats'][3]['base_stat'];
+      specialDefense = jsonData['stats'][4]['base_stat'];
+      speed = jsonData['stats'][5]['base_stat'];
+      
+      for (var ability in jsonData['abilities']) {
+        habilities.add(capitalizeFirstLetter(ability['ability']['name']));
+      }
+
+      for (var type in jsonData['types']) {
+        types.add(capitalizeFirstLetter(type['type']['name']));
+      }
+
+      pokemon = Pokemon(name: pokemon.name, urlImagen: pokemon.urlImagen, attack: attack, defense: defense, hp: hp, specialAttack: specialAttack, specialDefense: specialDefense, speed: speed, habilities: habilities, types: types);
+
+
+    } else {
+      print('Request failed with status: ${response.statusCode}');
+    }
+
+    return pokemon;
+  }
+
 
   String capitalizeFirstLetter(String s) {
     if (s.isEmpty) return s;
@@ -101,11 +141,13 @@ class _Pokemon_PageState extends State<Pokemon_Page> {
           child: ListTile(
             title: Text(pokemon.name),
             leading: Image.network(pokemon.urlImagen),
-            onTap: () {
-              Pokemon pokemonDetalled;
-              Navigator.push(context,
-               MaterialPageRoute(builder: (context) => Pokemon_Details(pokemon))
-               );
+            onTap: () async {
+              fetchPokemonDetails(pokemon).then((pokemonDetalled) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Pokemon_Details(pokemonDetalled)),
+                );
+              });
             },
           ),
         ),
@@ -119,10 +161,15 @@ class _Pokemon_PageState extends State<Pokemon_Page> {
 class Pokemon {
   String name;
   String urlImagen;
+  int hp;
+  int attack;
+  int defense;
+  int specialAttack;
+  int specialDefense;
+  int speed;
+  List<String> habilities;
+  List<String> types;
 
-  Pokemon({required this.name, required this.urlImagen});
 
-  getName() {
-    return name;
-  }
+  Pokemon({required this.name, required this.urlImagen, this.attack = 0, this.defense = 0, this.hp = 0, this.specialAttack = 0, this.specialDefense = 0, this.speed = 0, this.habilities = const [], this.types = const []});
 }
