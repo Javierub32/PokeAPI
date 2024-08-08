@@ -15,7 +15,7 @@ class _Pokemon_DetailsState extends State<Pokemon_Details> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Material App Bar'),
+          title: const Text('Entrada Pokedex'),
         ),
         body: Center(
           child: Column(
@@ -26,14 +26,19 @@ class _Pokemon_DetailsState extends State<Pokemon_Details> {
                 child: Transform.scale(
                   scale: 1,
                   child: Image.network(widget.pokemon.urlImagen, fit: BoxFit.cover),
-                ),),
-              Text(widget.pokemon.name),
+                ),
+              ),
+              Text(widget.pokemon.name, style: TextStyle(fontSize: 25),),
+
+              const SizedBox(height: 20),
               Text('HP:  ${widget.pokemon.hp}'),
               Text('Attack:  ${widget.pokemon.attack}'),
               Text('Defense:  ${widget.pokemon.defense}'),
               Text("Special Attack: ${widget.pokemon.specialAttack}"),
               Text("Special Defense: ${widget.pokemon.specialDefense}"),
               Text("Speed: ${widget.pokemon.speed}"),
+
+              SizedBox(height: 20),
 
               Habilities(widget: widget),
             ],
