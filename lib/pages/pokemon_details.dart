@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:poke_api/pages/pokemon_page.dart';
+import 'package:http/http.dart' as http;
 
 
 class Pokemon_Details extends StatefulWidget {
@@ -97,6 +100,25 @@ class Habilities extends StatelessWidget {
                 ],
               ),
               child: Text(widget.pokemon.habilities[1]), // Tu widget original
+            ),
+
+            if (widget.pokemon.habilities.length > 2)
+            Container(
+              padding: const EdgeInsets.all(10.0),
+              margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10.0),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 8.0,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Text(widget.pokemon.habilities[2]),
+              
             ),
           ],
         ),
