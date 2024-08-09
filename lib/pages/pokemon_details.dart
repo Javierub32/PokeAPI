@@ -45,7 +45,8 @@ class _Pokemon_DetailsState extends State<Pokemon_Details> {
               Stats(statName: 'Defense', statValue: widget.pokemon.defense),
               Stats(statName: 'Special Attack', statValue: widget.pokemon.specialAttack),
               Stats(statName: 'Special Defense', statValue: widget.pokemon.specialDefense),
-              Stats(statName: 'Speed', statValue: widget.pokemon.speed),   
+              Stats(statName: 'Speed', statValue: widget.pokemon.speed),
+              Stats(statName: 'Total', statValue: calcularTotalStats()),            
   
               const SizedBox(height: 20),
 
@@ -54,6 +55,10 @@ class _Pokemon_DetailsState extends State<Pokemon_Details> {
           ),
         ),
       );
+  }
+
+  int calcularTotalStats(){
+    return widget.pokemon.hp + widget.pokemon.attack + widget.pokemon.defense + widget.pokemon.specialAttack + widget.pokemon.specialDefense + widget.pokemon.speed;
   }
 }
 
