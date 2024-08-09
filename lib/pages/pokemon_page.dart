@@ -111,7 +111,7 @@ class _Pokemon_PageState extends State<Pokemon_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Pokemons'),
+          title: const Text('Pokedex'),
       ),
       body: Center(
         child: FutureBuilder(
