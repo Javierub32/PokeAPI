@@ -158,3 +158,69 @@ class Types extends StatelessWidget {
     }
   }
 }
+
+class Stats extends StatelessWidget {
+  final String statName;
+  final int statValue;
+  const Stats({
+    required this.statName,
+    required this.statValue,
+
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const SizedBox(width: 0), // Espacio entre el borde de la pantalla y el texto
+        //Text('$statName: $statValue'),
+        SizedBox(
+          width: 125,
+          child: Text('$statName: '), // Espacio entre el texto y la barra
+        ), // Espacio entre el texto y la barra
+        SizedBox(
+          width: 35,
+          child: Text('$statValue'), // Espacio entre el texto y la barra
+        ), // Valor del stat
+        Container(
+          width: 170, // Limitar el ancho máximo de la barra
+          height: 10,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            color: Colors.grey[300],
+          ),
+          child: FractionallySizedBox(
+            alignment: Alignment.centerLeft,
+            widthFactor: statValue / 255.0,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: elegirColor(statValue), // Color de la barra
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Color elegirColor(int statValue) {
+      Color color = Colors.grey; // Initialize the color variable with a default value
+      if (statValue < 30) {
+        color = Colors.red;
+      } else if (statValue < 50) {
+        color = Colors.orange;
+      } else if (statValue < 100) {
+        color = const Color(0xffffdd57);
+      } else if (statValue < 125) {
+        color = const Color(0xffa0e515);
+      } else if (statValue < 150) {
+        color = const Color(0xff23cd5e);
+      } else if (statValue <= 255) {
+        color = const Color(0xff00c2b8);
+      }
+      return color;
+    }
+}

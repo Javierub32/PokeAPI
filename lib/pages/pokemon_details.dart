@@ -28,7 +28,7 @@ class _Pokemon_DetailsState extends State<Pokemon_Details> {
                   child: Image.network(widget.pokemon.urlImagen, fit: BoxFit.cover),
                 ),
               ),
-              Text(widget.pokemon.name, style: TextStyle(fontSize: 25)),
+              Text(widget.pokemon.name, style: const TextStyle(fontSize: 25)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -40,14 +40,14 @@ class _Pokemon_DetailsState extends State<Pokemon_Details> {
               ),
 
               const SizedBox(height: 20),
-              Text('HP:  ${widget.pokemon.hp}'),
-              Text('Attack:  ${widget.pokemon.attack}'),
-              Text('Defense:  ${widget.pokemon.defense}'),
-              Text("Special Attack: ${widget.pokemon.specialAttack}"),
-              Text("Special Defense: ${widget.pokemon.specialDefense}"),
-              Text("Speed: ${widget.pokemon.speed}"),
-
-              SizedBox(height: 20),
+              Stats(statName: 'Hp', statValue: widget.pokemon.hp),
+              Stats(statName: 'Attack', statValue: widget.pokemon.attack),
+              Stats(statName: 'Defense', statValue: widget.pokemon.defense),
+              Stats(statName: 'Special Attack', statValue: widget.pokemon.specialAttack),
+              Stats(statName: 'Special Defense', statValue: widget.pokemon.specialDefense),
+              Stats(statName: 'Speed', statValue: widget.pokemon.speed),              
+  
+              const SizedBox(height: 20),
 
               Habilities(widget: widget),
             ],
