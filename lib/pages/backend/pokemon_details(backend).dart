@@ -13,11 +13,14 @@ class Habilities extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: ListTile(
+      margin: const EdgeInsets.symmetric(
+          horizontal: 20.0, vertical: 0), // Márgenes para separarlo de otros widgets
+        child: ListTile(
         title: const Text(
           'Abilities',
-          textAlign: TextAlign.center,
+        textAlign: TextAlign.center,
         ),
+        
         subtitle: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -26,7 +29,7 @@ class Habilities extends StatelessWidget {
                   10.0), // Agrega padding alrededor del widget
               margin: const EdgeInsets.symmetric(
                   horizontal: 10.0,
-                  vertical: 0.0), // Márgenes para separarlo de otros widgets
+                  vertical: 5.0), // Márgenes para separarlo de otros widgets
               decoration: BoxDecoration(
                 color: Colors.white, // Fondo blanco para destacar
                 borderRadius: BorderRadius.circular(10.0), // Bordes redondeados
