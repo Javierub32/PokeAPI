@@ -21,8 +21,8 @@ class _Pokemon_DetailsState extends State<Pokemon_Details> {
           child: Column(
             children: [
               SizedBox(
-                height: 150,
-                width: 150,
+                height: 125,
+                width: 125,
                 child: Transform.scale(
                   scale: 1,
                   child: Image.network(widget.pokemon.urlImagen, fit: BoxFit.cover),
@@ -45,7 +45,7 @@ class _Pokemon_DetailsState extends State<Pokemon_Details> {
               Stats(statName: 'Defense', statValue: widget.pokemon.defense),
               Stats(statName: 'Special Attack', statValue: widget.pokemon.specialAttack),
               Stats(statName: 'Special Defense', statValue: widget.pokemon.specialDefense),
-              Stats(statName: 'Speed', statValue: widget.pokemon.speed),              
+              Stats(statName: 'Speed', statValue: widget.pokemon.speed),   
   
               const SizedBox(height: 20),
 
