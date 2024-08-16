@@ -45,6 +45,10 @@ class _Pokemon_DetailsState extends State<Pokemon_Details> {
               const SizedBox(height: 20),
 
               Habilities(habilities: widget.pokemon.habilities),
+
+              const SizedBox(height: 20),
+
+              Weaknesess(types: widget.pokemon.types),
             ],
           ),
         ),
