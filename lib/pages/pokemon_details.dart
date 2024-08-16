@@ -28,16 +28,10 @@ class _Pokemon_DetailsState extends State<Pokemon_Details> {
                   child: Image.network(widget.pokemon.urlImagen, fit: BoxFit.cover),
                 ),
               ),
+
               Text(widget.pokemon.name, style: const TextStyle(fontSize: 25)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Types(type: widget.pokemon.types[0]),
-                  if (widget.pokemon.types.length > 1) // Verifica si hay más de un tipo
-                    Types(type: widget.pokemon.types[1]),
-                  
-                ],
-              ),
+              
+              Types(types: widget.pokemon.types),
 
               const SizedBox(height: 20),
               Stats(statName: 'Hp', statValue: widget.pokemon.hp),
@@ -50,7 +44,7 @@ class _Pokemon_DetailsState extends State<Pokemon_Details> {
   
               const SizedBox(height: 20),
 
-              Habilities(widget: widget),
+              Habilities(habilities: widget.pokemon.habilities),
             ],
           ),
         ),

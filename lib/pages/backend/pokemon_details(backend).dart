@@ -5,10 +5,10 @@ import 'package:poke_api/pages/pokemon_details.dart';
 class Habilities extends StatelessWidget {
   const Habilities({
     super.key,
-    required this.widget,
+    required this.habilities,
   });
 
-  final Pokemon_Details widget;
+  final List<String> habilities;
 
   @override
   Widget build(BuildContext context) {
@@ -24,64 +24,25 @@ class Habilities extends StatelessWidget {
         subtitle: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              padding: const EdgeInsets.all(
-                  10.0), // Agrega padding alrededor del widget
-              margin: const EdgeInsets.symmetric(
-                  horizontal: 10.0,
-                  vertical: 5.0), // Márgenes para separarlo de otros widgets
-              decoration: BoxDecoration(
-                color: Colors.white, // Fondo blanco para destacar
-                borderRadius: BorderRadius.circular(10.0), // Bordes redondeados
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors
-                        .black12, // Sombra ligera para dar un efecto de elevación
-                    blurRadius: 8.0,
-                    offset: Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Text(widget.pokemon.habilities[0]), // Tu widget original
-            ),
-            if (widget.pokemon.habilities.length > 1)
+            for (int i = 0; i < habilities.length; i++)
               Container(
-                padding: const EdgeInsets.all(
-                    10.0), // Agrega padding alrededor del widget
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 10.0,
-                    vertical: 0.0), // Márgenes para separarlo de otros widgets
+                padding: const EdgeInsets.all(10.0), // Agrega padding alrededor del widget
+                margin: EdgeInsets.symmetric(
+                  horizontal: 10.0,
+                  vertical: i == 0 ? 5.0 : 0.0, // Márgenes para separarlo de otros widgets
+                ),
                 decoration: BoxDecoration(
                   color: Colors.white, // Fondo blanco para destacar
                   borderRadius: BorderRadius.circular(10.0), // Bordes redondeados
                   boxShadow: const [
                     BoxShadow(
-                      color: Colors
-                          .black12, // Sombra ligera para dar un efecto de elevación
+                      color: Colors.black12, // Sombra ligera para dar un efecto de elevación
                       blurRadius: 8.0,
                       offset: Offset(0, 4),
                     ),
                   ],
                 ),
-                child: Text(widget.pokemon.habilities[1]), // Tu widget original
-              ),
-            if (widget.pokemon.habilities.length > 2)
-              Container(
-                padding: const EdgeInsets.all(10.0),
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.0),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 8.0,
-                      offset: Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: Text(widget.pokemon.habilities[2]),
+                child: Text(habilities[i]), // Tu widget original
               ),
           ],
         ),
@@ -91,42 +52,48 @@ class Habilities extends StatelessWidget {
 }
 
 class Types extends StatelessWidget {
-  final String type;
+  final List<String> types;
 
   const Types({
     super.key,
-    required this.type,
+    required this.types,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-          horizontal: 18.0,
-          vertical: 5.0), // Agrega padding alrededor del widget
-      margin: const EdgeInsets.symmetric(
-          horizontal: 5.0,
-          vertical: 5.0), // Márgenes para separarlo de otros widgets
-      decoration: BoxDecoration(
-        color: elegirColor(type.toLowerCase()), // Fondo blanco para destacar
-        borderRadius: BorderRadius.circular(10.0), // Bordes redondeados
-        //border: Border.all(color: Colors.limeAccent), //
-        boxShadow: const [
-          BoxShadow(
-            color:
-                Colors.black12, // Sombra ligera para dar un efecto de elevación
-            blurRadius: 8.0,
-            offset: Offset(0, 4),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        for (int i = 0; i < types.length; i++)
+          Container(
+            padding: const EdgeInsets.symmetric(
+                horizontal: 18.0,
+                vertical: 5.0), // Agrega padding alrededor del widget
+            margin: const EdgeInsets.symmetric(
+                horizontal: 5.0,
+                vertical: 5.0), // Márgenes para separarlo de otros widgets
+            decoration: BoxDecoration(
+              color: elegirColor(types[i].toLowerCase()), // Fondo blanco para destacar
+              borderRadius: BorderRadius.circular(10.0), // Bordes redondeados
+              //border: Border.all(color: Colors.limeAccent), //
+              boxShadow: const [
+                BoxShadow(
+                  color:
+                      Colors.black12, // Sombra ligera para dar un efecto de elevación
+                  blurRadius: 8.0,
+                  offset: Offset(0, 4),
+                ),
+              ],
+            ),
+            child: Text(
+              types[i],
+              style: const TextStyle(
+                color: Colors.white,
+                //fontWeight: FontWeight.bold
+              ),
+            ), // Tu widget original
           ),
-        ],
-      ),
-      child: Text(
-        type,
-        style: const TextStyle(
-          color: Colors.white,
-          //fontWeight: FontWeight.bold
-        ),
-      ), // Tu widget original
+      ],
     );
   }
 
