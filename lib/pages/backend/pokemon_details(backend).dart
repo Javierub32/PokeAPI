@@ -19,18 +19,16 @@ class Habilities extends StatelessWidget {
           'Abilities',
           textAlign: TextAlign.center,
         ),
-        subtitle: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        subtitle: Wrap(
+          alignment: WrapAlignment.center, // Alinea los elementos en el centro
           children: [
             for (int i = 0; i < habilities.length; i++)
               Container(
                 padding: const EdgeInsets.all(
                     10.0), // Agrega padding alrededor del widget
-                margin: EdgeInsets.symmetric(
-                  horizontal: 10.0,
-                  vertical: i == 0
-                      ? 5.0
-                      : 0.0, // Márgenes para separarlo de otros widgets
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 7.0,
+                  vertical: 5.0,
                 ),
                 decoration: BoxDecoration(
                   color: Colors.white, // Fondo blanco para destacar
@@ -420,8 +418,10 @@ class Weaknesess extends StatelessWidget {
           'Weaknesses',
           textAlign: TextAlign.center,
         ),
-        subtitle: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        subtitle: Wrap(
+        alignment: WrapAlignment.center, // Alinea los elementos en el centro
+        spacing: 1.0, // Espacio horizontal entre elementos
+        runSpacing: 1.0, // Espacio vertical entre líneas de elementos
           children: [
             for (int i = 0; i < weaknessesList.length; i++)
               Container(
