@@ -118,7 +118,7 @@ class Types extends StatelessWidget {
       case 'dark':
         return const Color(0xFF34495E);
       case 'fairy':
-        return const Color(0xFFFADBD8);
+        return const Color.fromARGB(255, 255, 156, 217);
       case 'normal':
         return const Color(0xFFAAB7B8);
       case 'poison':
@@ -480,7 +480,7 @@ class Weaknesess extends StatelessWidget {
       case 'dark':
         return const Color(0xFF34495E);
       case 'fairy':
-        return const Color(0xFFFADBD8);
+        return const Color.fromARGB(255, 255, 156, 217);
       case 'normal':
         return const Color(0xFFAAB7B8);
       case 'poison':

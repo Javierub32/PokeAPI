@@ -195,7 +195,9 @@ class CustomButton extends StatelessWidget {
                 );
               },
             ),
+
             const SizedBox(width: 12.0),
+            
             Text(
               text,
               style: const TextStyle(
