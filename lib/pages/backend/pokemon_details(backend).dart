@@ -424,6 +424,7 @@ class Weaknesess extends StatelessWidget {
         runSpacing: 1.0, // Espacio vertical entre líneas de elementos
           children: [
             for (int i = 0; i < weaknessesList.length; i++)
+              
               Container(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 18.0,

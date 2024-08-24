@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 
 class Home_page extends StatelessWidget {
@@ -178,11 +179,21 @@ class CustomButton extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Image.network(
-              imageUrl,
-              width: 40.0,
-              height: 40.0,
-              fit: BoxFit.cover,
+            CachedNetworkImage(
+              imageUrl: imageUrl,
+              //placeholder: (context, url) => const CircularProgressIndicator(),
+              imageBuilder: (context, imageProvider) {
+                return Container(
+                  width: 40.0,
+                  height: 40.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              },
             ),
             const SizedBox(width: 12.0),
             Text(
